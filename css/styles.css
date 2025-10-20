@@ -1,0 +1,362 @@
+
+/* Manejo de padding y border*/
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+*, *:before, *:after{
+    box-sizing: inherit;
+}
+
+/*Paleta de colores y fuente*/
+:root {
+    --color-negro-oscuro: #272727;
+    --color-acento-dorado: #FED766;
+    --color-principal-cian: #009FB7;
+    --color-gris-azulado: #696773;
+    --color-fondo-claro: #EFF1F3;
+
+    --color-principal:var(--color-principal-cian);
+    --color-acento:var(--color-acento-dorado);
+    --color-fondo:var(--color-fondo-claro);
+    --color-texto-oscuro:var(--color-negro-oscuro);
+    --color-texto-secundario:var(--color-gris-azulado);
+
+    --fuente-principal: 'Arial', sans-serif;
+
+}
+/*Estilo general*/
+body{
+    background-color: var(--color-fondo);
+    color: var(--color-texto-oscuro);
+    font-size: 1.2rem;
+    line-height: 1.5;
+    font-family: var(--fuente-principal);
+    padding: 0;
+    margin: auto;
+}
+/*resto de elementos carrito, sesion*/
+a{
+    text-decoration: none;
+    color: inherit;
+}
+ul{
+    list-style: none;
+    padding: 0%;
+    margin: 0%;
+
+}
+img{
+    max-width: 100%;
+    display: block;
+
+}
+/*Contenido principal*/
+main{
+    padding: 2rem;
+    max-width: 160rem; /*RANOGO MAXIMO DEL CONTENIDO DE LA PAGINA*/
+    margin: 0 auto;
+    
+
+}
+/*Estilo de los titulos*/
+h2{
+    font-size: 2.8rem;
+    color: var(--color-texto-oscuro);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/*HEADER*/
+
+header{
+    background-color: var(--color-negro-oscuro);
+    padding: 1rem 3rem;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+
+}
+
+/*NAVEGACION PRINCIPAL INCLUYE CATEGORIA,BARRA BUSQUEDA,CARRITO Y SESION*/
+
+.centroNav{
+    display: flex;
+   
+}
+.busqueda{
+    padding: 1rem;
+}
+.header-izquierda{
+    display:contents;
+    
+}
+.logo{
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--color-principal-cian);
+    
+}
+
+/*Botton Categorias*/
+.menu-desplegable-btn {
+    background-color: var(--color-negro-oscuro);
+    color: var(--color-fondo-claro);
+    border: none;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    font-size: 1.6rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+
+}
+.menu-desplegable-btn:hover{
+    color:var(--color-gris-azulado);
+
+}
+
+/* Categorias Dentro del Boton categorias*/
+.desplegable-menu {
+    position: relative; /* mantiene el contexto para el summary */
+    z-index: 1000;
+
+}
+
+/*DESPLEGABLE CATEGORIAS*/
+
+.desplegable-menu[open] ul {
+  position: absolute;
+  top: 100%; /* justo debajo del summary */
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 1001; /* más alto que el navbar */
+  width: max-content;
+
+}
+
+/* Estilos de los enlaces dentro del Boton categorias */
+.desplegable-menu li a {
+    color: var(--color-negro-oscuro);
+    padding: 1rem 2rem;
+    display: block;
+    font-size: 1.5rem;
+
+}
+
+.desplegable-menu li a:hover {
+    background-color: var(--color-fondo-claro); /* Fondo claro al pasar el ratón */
+
+}
+
+/* Separador de lista */
+.desplegable-menu .separador {
+    border-top: 1px solid var(--color-fondo-claro);
+    margin: 0.5rem 0;
+
+}
+
+
+.desplegable-menu.mostrar {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+
+}
+
+
+/*Carrito y sesion*/
+.utilidades{
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+
+}
+/*barra de busqueda*/
+.utilidades input[type="search"]{
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    width: 20rem;
+    background: var(--color-gris-azulado);
+    color: var(--color-fondo-claro);
+
+}
+.utilidades a {
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    color: var(--color-fondo-claro);
+
+}
+
+.utilidades a:hover{
+    background-color: rgba(0, 159, 183, 0.2);
+
+}
+
+
+/*Imagenes Ofertas Destacadas*/
+
+
+.ofertasDestacadas {
+    background-color: var(--color-gris-azulado); /* Fondo para contrastar */
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+    margin-bottom: 4rem; 
+    min-height: 40rem; 
+    
+}
+
+.ofertasDestacadas h1 {
+    font-size: 3.5rem;
+    margin: 0;
+    color: var(--color-acento-dorado); /* Dorado para el título de las ofertas */
+}
+
+/*CATEGORIAS DESTACADAS*/
+
+/*GRID*/
+
+.listaCategoria {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 2rem; 
+    margin-bottom: 4rem;
+}
+
+.categoria {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    min-height: 15rem; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+}
+
+.categoria:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.categoria:before {
+    content: "IMAGEN"; /* Simula el placeholder de la imagen */
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--color-gris-azulado);
+}
+
+/*PRODUCTOS/NOVEDADES*/
+
+/*GRID*/
+
+
+.listaProductos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 2rem; 
+    margin-bottom: 4rem;
+}
+/*COMO SE VEN LOS CONTENEDORES DE NOVEDADES*/
+.producto {
+   border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    min-height: 15rem; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+}
+
+.producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.producto:before {
+    content: "IMAGEN"; /* Simula el placeholder de la imagen */
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--color-gris-azulado);
+}
+
+
+/*NOTICIAS*/
+
+
+.listaNoticias {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 1rem; 
+    margin-bottom: 4rem;
+}
+
+.noticia {
+    border: 1px solid var(--color-fondo); /* Borde suave */
+    border-radius: 8px;
+    padding: 1.5rem;
+    background-color: white;
+    text-align: left;
+    transition: box-shadow 0.3s;
+    min-height: 40rem; 
+}
+
+.noticia:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Sombra ligera al pasar el ratón */
+}
+
+
+/*footer*/
+
+footer {
+    background-color: var(--color-negro-oscuro); 
+    color: var(--color-fondo-claro);
+    padding: 3rem 5rem;
+    margin-top: 4rem;
+}
+
+.footer-columnas {
+    display: flex;
+    justify-content: space-around; 
+    flex-wrap: wrap; 
+    margin-bottom: 2rem;
+}
+
+.footer-columnas h3 {
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--color-principal-cian); 
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-columnas a {
+    color: var(--color-fondo-claro);
+    font-size: 1.4rem;
+    display: block;
+    padding: 0.3rem 0;
+    transition: color 0.3s;
+}
+
+.footer-columnas a:hover {
+    color: var(--color-principal-cian); 
+}
+
+footer > p {
+    text-align: center;
+    font-size: 1.2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-gris-azulado);
+}
