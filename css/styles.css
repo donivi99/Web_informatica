@@ -169,7 +169,6 @@ header{
 /*Carrito y sesion*/
 .utilidades{
     display: flex;
-    align-items: center;
     gap: 1.2rem;
 
 }
