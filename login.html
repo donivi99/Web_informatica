@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="../css/login.css" rel="stylesheet">
+    <script defer src="../Js/script.js"></script>
+
+</head>
+
+<body>
+
+    <div class="loginContainer">
+        <h2>Iniciar Sesión</h2>
+        <form id="loginForm">
+            <label for="username">Usuario:</label>
+            <input type="text" id="username" required>
+
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" required>
+                <section class="contraseñaOlvidada">
+                    <a href="#">¿Olvidaste tu contraseña?</a>
+                </section>
+                <section class="mostrarContraseña">
+                    <input type="checkbox" id="showPassword">
+                    <label for="showPassword">Mostrar Contraseña</label>
+                </section>
+            <div class="registrarme">
+                <p>¿No tienes una cuenta? <a href="#">Regístrate</a></p>
+            </div>
+
+            <button type="submit">Entrar</button>
+        </form>
+        <p id="errorMessage"></p>
+    </div>
+</body>
+</html>

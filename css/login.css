@@ -1,0 +1,123 @@
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+*, *:before, *:after{
+    box-sizing: inherit;
+}
+body{
+    background-color: #c4c2c2;
+    font-family: Arial, sans-serif;
+}
+
+/*ESTILO DEL CONTENEDOR DE LOGIN*/
+
+.loginContainer{
+    width: 45rem;/*ANCHO DEL CONTENEDOR*/
+    margin: 12rem auto;/*CENTRADO HORIZONTAL Y VARGEN SUPERIOR*/
+    padding: 6rem;/*ESPCION INTERNO*/
+    background-color: #a1a0a8;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.1);/*SOMBRA*/
+    border-radius: 0.5rem;
+    flex-direction: column;
+    text-align: left;
+
+}
+/*ESTILO DEL TITULO*/
+
+.loginContainer h2{
+    text-align: center;/*TITULO CENTRADO*/
+    margin-bottom: 4rem;/*ESPACIO INTERIOR DEBAJO DEL TITULO*/
+    color:#0190a5;/*COLOR DEL TITULO*/
+    font-size: 2.2rem;  /*TAMAÑO DEL TITULO*/
+}
+/*ESTILO DE LAS ETIQUETAS*/
+
+.loginContainer label{
+    display: block;/*ETIQUETAS DE BLOQUE*/
+    margin-bottom: 1rem;/*ESPACIO DEBAJO DE CADA ETIQUETA*/
+    font-weight: bold;/*NEGRITA*/
+    font-size: 1.2rem;/*TAMAÑO DE LA FUENTE*/
+
+}
+/*ESTILO DE LOS CAMPOS DE TEXTO*/
+
+.loginContainer input{
+    width: 100%;/*ANCHO COMPLETO*/
+    padding: 0.5rem;/*ESPACIO INTERNO*/
+    margin-bottom: 1rem;/*ESPACIO DEBAJO DE CADA CAMPO*/
+    border: 0.1rem solid white;/*BORDES BLANCOS*/
+    border-radius: 0.5rem;
+
+}
+/*ESTILO DEL BOTON*/
+
+.loginContainer button{
+    width: 100%;/*ANCHO COMPLETO*/
+    padding: 0.6rem;/*ESPACIO INTERNO*/
+    background-color: #009FB7; /*COLOR DE FONDO DEL BOTON*/
+    border: none; /*SIN BORDES*/
+    color: #ffffff; /*COLOR DEL TEXTO*/
+    font-size: 1.6rem;  /*TAMAÑO DEL TEXTO*/
+    border-radius: 0.5rem;  /*ESQUINAS REDONDEADAS*/
+    cursor: pointer;    /*CURSOR DE MANO AL PASAR POR ENCIMA*/
+
+}
+/*ESTILO DEL BOTON AL PASAR EL CURSOR POR ENCIMA*/
+.loginContainer button:hover{
+    background-color: #41c2ce;
+
+}
+
+/*ESTILO DEL CONTENEDOR OLVIDE MI CONTRASEÑA*/
+
+.contraseñaOlvidada{
+    margin-bottom: 1rem;/*ESPACIO DEBAJO DEL CONTENEDOR*/
+    font-size: 1.2rem;/*TAMAÑO DEL TEXTO*/
+    
+}
+.contraseñaOlvidada a{
+    color: #e9c55b;
+
+}
+
+/*ESTILO DEL CONTENEDOR MOSTRAR CONTRASEÑA*/
+
+.mostrarContraseña{
+    width: 100%;/*ANCHO AUTOMATICO*/
+    display: flex;/*USO DE FLEXBOX*/
+    justify-content: flex-start;/*ALINEACION HORIZONTAL AL INICIO*/
+    align-items: center;/*CENTRADO VERTICAL*/
+    gap: 0.6rem;/*ESPACIO ENTRE BOTON Y TEXTO*/
+    margin: 0.3rem;/*SIN MARGENES*/
+    margin-bottom: 1rem;/*ESPACIO DEBAJO DEL CONTENEDOR*/
+}
+.mostrarContraseña label{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+.mostrarContraseña input[type="checkbox"]{
+    margin: 0;
+    width: 1.6rem;
+    height: 1.6rem;
+    box-sizing: border-box;
+}
+
+.registrarme{
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+.registrarme a{
+    color: #e9c55b;
+}
+
+/*ESTILO DEL MENSAJE DE ERROR*/
+#errorMessage{
+    color: rgb(255, 0, 0);
+    text-align: center;
+    margin-top: 1rem;/*ESPACIO SUPERIOR*/
+    font-size: 1.2rem;/*TAMAÑO DEL TEXTO*/
+
+}
