@@ -1,6 +1,8 @@
 
-// Js/script.js
+
+
 // Lógica de validación del formulario de inicio de sesión
+
 document.addEventListener('DOMContentLoaded', () => {// Asegura que el DOM esté completamente cargado
     const loginForm = document.getElementById('loginForm');// Obtiene el formulario de inicio de sesión
     const errorMessage = document.getElementById('errorMessage');// Obtiene el elemento para mostrar mensajes de error

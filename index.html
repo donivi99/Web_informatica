@@ -6,7 +6,9 @@
     <title>Informática</title>
     <link rel="preload" href="css/styles.css" as="styles">
     <link href="css/styles.css" rel="stylesheet">
-    <script defer src="../Js/script.js"></script>
+    <script defer src="Js/carrusel.js"></script>
+    <script defer src="Js/script.js"></script>
+    
 </head>
 <body>
 
@@ -48,9 +50,22 @@
 
     <main class="contenedor">
 
-        <section class="ofertasDestacadas">
-            <h1>Imagenes Ofertas Destacadas</h1>
+        <section class="carouselContainerOfertas">
+            <div class="carouselOfertas" id="carouselOfertas">
+                <div class="carouselItemsOfertas">
+                    <img src="img/oferta.png.jpeg" alt="imagen carrusel"/>
+                </div>
+                <div class="carouselItemsOfertas">
+                    <img src="img/oferta2.png.jpeg" alt="imagen carrusel"/>
+                </div>
+
+            </div>
+            <button class="carouselBtnOfertas prevOfertas" id="prevBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-big-left-line"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 15v3.586a1 1 0 0 1 -1.707 .707l-6.586 -6.586a1 1 0 0 1 0 -1.414l6.586 -6.586a1 1 0 0 1 1.707 .707v3.586h6v6h-6z" /><path d="M21 15v-6" /></svg></button>
+            <button class="carouselBtnOfertas nextOfertas" id="nextBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-big-right-line"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 9v-3.586a1 1 0 0 1 1.707 -.707l6.586 6.586a1 1 0 0 1 0 1.414l-6.586 6.586a1 1 0 0 1 -1.707 -.707v-3.586h-6v-6h6z" /><path d="M3 9v6" /></svg></button>
+
+            <div class="contentIndicators" id="indicators"></div>
         </section>
+        
 
         <section class="categoriasDestacadas">
 
