@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informática</title>
-    <link rel="preload" href="css/styles.css" as="styles">
     <link href="css/styles.css" rel="stylesheet">
+    <link href="css/carrusel.css" rel="stylesheet">
     <script defer src="Js/carrusel.js"></script>
     <script defer src="Js/script.js"></script>
     
@@ -60,23 +60,56 @@
                 </div>
 
             </div>
-            <button class="carouselBtnOfertas prevOfertas" id="prevBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-big-left-line"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 15v3.586a1 1 0 0 1 -1.707 .707l-6.586 -6.586a1 1 0 0 1 0 -1.414l6.586 -6.586a1 1 0 0 1 1.707 .707v3.586h6v6h-6z" /><path d="M21 15v-6" /></svg></button>
-            <button class="carouselBtnOfertas nextOfertas" id="nextBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-big-right-line"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 9v-3.586a1 1 0 0 1 1.707 -.707l6.586 6.586a1 1 0 0 1 0 1.414l-6.586 6.586a1 1 0 0 1 -1.707 -.707v-3.586h-6v-6h6z" /><path d="M3 9v6" /></svg></button>
+            <button class="carouselBtnOfertas prevOfertas" id="prevBtn">‹</button>
+            <button class="carouselBtnOfertas nextOfertas" id="nextBtn">›</button>
 
             <div class="contentIndicators" id="indicators"></div>
         </section>
         
 
-        <section class="categoriasDestacadas">
+        <section class="carouselContainerCategorias">
+            <h2>Categorías Destacadas</h2>
+            <div class="carouselCategorias" id="carouselCategorias">
+                <div class="carouselItemsCategorias">
+                    <a class="categoria-card" href="categoria.html#gpu" title="Tarjetas gráficas">
+                        <img src="img/Grafica.png.jpeg" alt="Tarjetas gráficas">
+                        <span class="categoria-title">Grafica</spa>
+                    </a>
+                </div>
 
-            <h2>Categorias Destacada</h2>
-            <div class="listaCategoria">
-                <article class="categoria">...</article>
-                <article class="categoria">...</article>
-                <article class="categoria">...</article>
-                <article class="categoria">...</article>
+                <div class="carouselItemsCategorias">
+                    <a class="categoria-card" href="categoria.html#cpu" title="Procesadores">
+                        <img src="img/procesador.png.jpeg" alt="Procesadores">
+                        <span class="categoria-title">CPU</span>
+                    </a>
+                </div>
+
+                <div class="carouselItemsCategorias">
+                    <a class="categoria-card" href="categoria.html#torre" title="Torres">
+                        <img src="img/torre.png.jpeg" alt="Torres">
+                        <span class="categoria-title">Torres</span>
+                    </a>
+                </div>
+
+                <div class="carouselItemsCategorias">
+                    <a class="categoria-card" href="categoria.html#perifericos" title="Periféricos">
+                        <img src="img/perifericos.png.webp" alt="Periféricos">
+                        <span class="categoria-title">Periféricos</span>
+                    </a>
+                </div>
+
+                <div class="carouselItemsCategorias">
+                    <a class="categoria-card" href="categoria.html#torres" title="Más torres">
+                        <img src="img/torre.png.jpeg" alt="Más torres">
+                        <span class="categoria-title">Torres 2</span>
+                    </a>
+                </div>
             </div>
 
+            <button class="carouselBtnOfertas prevOfertas" id="prevCategoriasBtn" aria-label="Anterior categoría">‹</button>
+            <button class="carouselBtnOfertas nextOfertas" id="nextCategoriasBtn" aria-label="Siguiente categoría">›</button>
+
+            <div class="contentIndicators" id="indicatorsCategorias"></div>
         </section>
         
         <section class="novedadesProductos">

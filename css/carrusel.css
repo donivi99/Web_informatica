@@ -1,0 +1,212 @@
+/*Carrusel Ofertas*/
+
+.carouselContainerOfertas{
+    position: relative;
+    max-width: 80%;
+    margin: 0 auto 4rem auto;
+    overflow: hidden;/* Oculta el desbordamiento para el efecto de carrusel */
+}
+/*Estilo del contenedor del carrusel*/
+
+.carouselOfertas{
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+/*Estilo de los items del carrusel*/
+
+.carouselItemsOfertas{
+    min-width: 100%;/* Cada imagen ocupa el 100% del contenedor */
+    position: relative;/* Para posicionar elementos dentro si es necesario */
+}
+/*Estilo de las imagenes del carrusel*/
+
+.carouselItemsOfertas img{
+    width: 100%;/* Asegura que la imagen ocupe todo el ancho del contenedor */
+    height: 500px;/* Altura fija para el carrusel */
+    object-fit: cover;/* Ajusta la imagen para cubrir el contenedor sin distorsión */
+    display: block;/* Elimina espacios en línea alrededor de la imagen */
+}
+/*Botones de navegacion del carrusel de ofertas*/
+
+.carouselBtnOfertas{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.35); /* base semitransparente */
+    color: #fff;
+    width: 3.8rem;
+    height: 3.8rem;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    font-size: 1.8rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+    z-index: 10;
+    backdrop-filter: blur(4px); /* suaviza el fondo detrás del botón */
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+
+}
+/*Efectos de los botones*/
+
+.carouselBtnOfertas:hover{
+    background: rgba(255,255,255,0.08); /* efecto más sutil y claro al pasar */
+    color: #ffffff;
+    transform: translateY(-50%) scale(1.06); /* ligero zoom */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+
+}
+/*Efecto al hacer click en los botones*/
+
+.carouselBtnOfertas:active{
+    transform: translateY(-50%) scale(0.98);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+
+}
+/*Efecto al enfocar los botones con teclado*/
+
+.carouselBtnOfertas:focus-visible{
+    outline: 3px solid rgba(0,159,183,0.25);
+    outline-offset: 4px;
+
+}
+/*Posicionamiento de los botones*/
+
+.prevOfertas{
+    left: 1rem;/* Posiciona el botón izquierdo */
+}
+/*Posicionamiento de los botones*/
+
+.nextOfertas{
+    right: 1rem;/* Posiciona el botón derecho */
+}
+/*Indicadores del carrusel*/
+
+.contentIndicators{
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    gap: 1rem;
+}
+
+.carousel-dot {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    border: none;
+    cursor: pointer;
+    transition: background 180ms ease, transform 120ms ease;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+}
+.carousel-dot.active,
+.carousel-dot[aria-selected="true"] {
+    background: rgba(255,255,255,0.95);
+    transform: scale(1.12);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+.carousel-dot:focus-visible {
+    outline: 3px solid rgba(0,159,183,0.22);
+    outline-offset: 4px;
+}
+
+/*Carrusel Categorias*/
+
+/* asegurar un ancho de contenido compartido y centrado */
+main.contenedor {
+    max-width: 1200px;     /* ajusta este valor al mismo que usa novedadesProductos */
+    margin: 0 auto;
+    padding: 0 1.6rem;     /* gutters iguales para todas las secciones */
+    box-sizing: border-box;
+}
+
+/* que ambas secciones ocupen todo el ancho del contenedor */
+.carouselContainerCategorias,
+.novedadesProductos {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;    /* necesario para posicionar botones dentro */
+}
+
+/* el track del carrusel ocupa todo el ancho interno del contenedor */
+.carouselContainerCategorias .carouselCategorias {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* cada item se sigue calculando por flex-basis; si usas 3 por vista */
+.carouselItemsCategorias {
+    flex: 0 0 calc((100% / 3) - 1rem); /* conserva la lógica previa para 3 items visibles */
+}
+
+.carouselContainerCategorias {
+    position: relative;
+    max-width: 80%;
+    margin: 0 auto 4rem auto;
+    overflow: hidden;
+}
+.carouselCategorias {
+    display: flex;
+    gap: 1rem;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+    padding: 1rem 0;
+    box-sizing: border-box;
+}
+/* cada item ocupará 1/3 del contenedor (con gap considerado) */
+.carouselItemsCategorias {
+    flex: 0 0 calc((100% / 3) - (1rem * 2 / 3)); /* 3 por vista, resta parte del gap */
+    box-sizing: border-box;
+}
+.categoria-card {
+    display: block;
+    background: #fff;
+    border-radius: .6rem;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+.categoria-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+}
+.categoria-title {
+    display: block;
+    padding: 0.8rem;
+    font-weight: 600;
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+/* botones (usa ya existentes estilos de .carouselBtnOfertas) */
+#prevCategoriasBtn { left: 0.6rem; }
+#nextCategoriasBtn { right: 0.6rem; }
+
+/* indicadores específicos */
+#indicatorsCategorias { 
+    position: absolute; 
+    bottom: .8rem; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    display:flex; gap:.5rem; 
+}
+
+/* responsive: 1 item en pantallas pequeñas, 2 en medias */
+
+@media (max-width: 900px) {
+    .carouselItemsCategorias { flex: 0 0 calc((100% / 2) - (1rem * 1 / 2)); }
+}
+@media (max-width: 520px) {
+    .carouselItemsCategorias { flex: 0 0 100%; }
+}

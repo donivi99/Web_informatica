@@ -52,3 +52,99 @@ document.addEventListener('DOMContentLoaded', () => {
     carouselOfertas.style.transition = carouselOfertas.style.transition || 'transform 0.5s ease';
     goToSlide(0);
 });
+
+// --- Carrusel Categorías: mostrar 3 por vista y navegar por botones
+
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('carouselCategorias');
+    const prev = document.getElementById('prevCategoriasBtn');
+    const next = document.getElementById('nextCategoriasBtn');
+    const indicatorsCat = document.getElementById('indicatorsCategorias');
+
+    if (!container) return;
+
+    const items = Array.from(container.querySelectorAll('.carouselItemsCategorias'));
+    const total = items.length;
+    function itemsPerView() {
+        if (window.matchMedia('(max-width:520px)').matches) return 1;
+        if (window.matchMedia('(max-width:900px)').matches) return 2;
+        return 3;
+    }
+
+    let perView = itemsPerView();
+    let maxIndex = Math.max(0, total - perView);
+    let index = 0;
+
+    function updateLayout() {
+        perView = itemsPerView();
+        maxIndex = Math.max(0, total - perView);
+        // asegúrate de que el índice esté dentro de rango tras el resize
+        if (index > maxIndex) index = maxIndex;
+        goTo(index);
+        renderIndicators();
+    }
+
+    function goTo(i) {
+        index = i;
+        // Clamp index por seguridad (aunque next/prev hacen wrap)
+        if (index < 0) index = 0;
+        if (index > maxIndex) index = maxIndex;
+        const shiftPercent = (100 / perView) * index;
+        container.style.transform = `translateX(-${shiftPercent}%)`;
+        // no deshabilitamos botones (wrap), solo actualizamos indicadores
+        updateIndicatorState();
+    }
+
+    function nextSlide() {
+        // wrap hacia delante
+        if (maxIndex === 0) {
+            goTo(0);
+            return;
+        }
+        const nextIndex = index >= maxIndex ? 0 : index + 1;
+        goTo(nextIndex);
+    }
+
+    function prevSlide() {
+        // wrap hacia atrás
+        if (maxIndex === 0) {
+            goTo(0);
+            return;
+        }
+        const prevIndex = index <= 0 ? maxIndex : index - 1;
+        goTo(prevIndex);
+    }
+
+    function renderIndicators() {
+        if (!indicatorsCat) return;
+        indicatorsCat.innerHTML = '';
+        const dotsCount = maxIndex + 1;
+        for (let i = 0; i < dotsCount; i++) {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'carousel-dot';
+            b.dataset.index = i;
+            b.setAttribute('aria-label', `Página ${i + 1}`);
+            b.addEventListener('click', () => goTo(i));
+            indicatorsCat.appendChild(b);
+        }
+        updateIndicatorState();
+    }
+
+    function updateIndicatorState() {
+        if (!indicatorsCat) return;
+        const dots = Array.from(indicatorsCat.children);
+        dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+
+    // eventos
+    next && next.addEventListener('click', nextSlide);
+    prev && prev.addEventListener('click', prevSlide);
+    window.addEventListener('resize', () => {
+        setTimeout(updateLayout, 80);
+    });
+
+    // init
+    container.style.transition = 'transform 0.5s ease';
+    updateLayout();
+});
