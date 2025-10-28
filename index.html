@@ -43,9 +43,9 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#009FB7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-cart"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 17h-11v-14h-2" /><path d="M6 5l14 1l-1 7h-13" /></svg>
                         </a>
                 </div>
-            
-        </nav>
 
+        </nav>
+        
     </header>
 
     <main class="contenedor">
@@ -65,7 +65,6 @@
 
             <div class="contentIndicators" id="indicators"></div>
         </section>
-        
 
         <section class="carouselContainerCategorias">
             <h2>Categorías Destacadas</h2>
@@ -73,7 +72,7 @@
                 <div class="carouselItemsCategorias">
                     <a class="categoria-card" href="categoria.html#gpu" title="Tarjetas gráficas">
                         <img src="img/Grafica.png.jpeg" alt="Tarjetas gráficas">
-                        <span class="categoria-title">Grafica</spa>
+                        <span class="categoria-title">Grafica</span>
                     </a>
                 </div>
 
@@ -109,18 +108,53 @@
             <button class="carouselBtnOfertas prevOfertas" id="prevCategoriasBtn" aria-label="Anterior categoría">‹</button>
             <button class="carouselBtnOfertas nextOfertas" id="nextCategoriasBtn" aria-label="Siguiente categoría">›</button>
 
-            <div class="contentIndicators" id="indicatorsCategorias"></div>
+        <div class="contentIndicators" id="indicatorsCategorias"></div>
         </section>
         
-        <section class="novedadesProductos">
+        <section class="carouselContainerNovedades">
 
             <h2>Novedades</h2>
-            <div class="listaProductos">
-                <article class="producto">...</article>
-                <article class="producto">...</article>
-                <article class="producto">...</article>
-                <article class="producto">...</article>
+            <div class="carouselNovedades" id="carouselNovedades">
+                <div class="carouselItemsNovedades">
+                    <a class="novedades-card" href="categoria.html#gpu" title="Tarjetas gráficas">
+                        <img src="img/Grafica.png.jpeg" alt="Tarjetas gráficas">
+                        <span class="novedades-title">Grafica</span>
+                    </a>
+                </div>
+
+                <div class="carouselItemsNovedades">
+                    <a class="novedades-card" href="categoria.html#cpu" title="Procesadores">
+                        <img src="img/procesador.png.jpeg" alt="Procesadores">
+                        <span class="novedades-title">CPU</span>
+                    </a>
+                </div>
+
+                <div class="carouselItemsNovedades">
+                    <a class="novedades-card" href="categoria.html#torre" title="Torres">
+                        <img src="img/torre.png.jpeg" alt="Torres">
+                        <span class="novedades-title">Torres</span>
+                    </a>
+                </div>
+
+                <div class="carouselItemsNovedades">
+                    <a class="novedades-card" href="categoria.html#perifericos" title="Periféricos">
+                        <img src="img/torre.png.jpeg" alt="Periféricos">
+                        <span class="novedades-title">Periféricos</span>
+                    </a>
+                </div>
+
+                <div class="carouselItemsNovedades">
+                    <a class="novedades-card" href="categoria.html#torres" title="Más torres">
+                        <img src="img/torre.png.jpeg" alt="Más torres">
+                        <span class="novedades-title">Torres 2</span>
+                    </a>
+                </div>
             </div>
+
+            <button class="carouselBtnNovedades prevNovedades" id="prevNovedadesBtn" aria-label="Anterior novedades">‹</button>
+            <button class="carouselBtnNovedades nextNovedades" id="nextNovedadesBtn" aria-label="Siguiente novedades">›</button>
+
+        <div class="contentIndicators" id="indicatorsNovedades"></div>
 
         </section>
         

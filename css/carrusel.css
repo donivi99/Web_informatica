@@ -1,3 +1,15 @@
+:root{
+    /* ancho central compartido por todas las secciones (ajusta a tu valor) */
+    --content-max-width: 170rem;
+}
+/* Asegura que el contenedor principal use la variable */
+main.contenedor {
+    max-width: var(--content-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
 /*Carrusel Ofertas*/
 
 .carouselContainerOfertas{
@@ -21,10 +33,12 @@
 /*Estilo de las imagenes del carrusel*/
 
 .carouselItemsOfertas img{
-    width: 100%;/* Asegura que la imagen ocupe todo el ancho del contenedor */
-    height: 500px;/* Altura fija para el carrusel */
-    object-fit: cover;/* Ajusta la imagen para cubrir el contenedor sin distorsión */
-    display: block;/* Elimina espacios en línea alrededor de la imagen */
+    width: 100%;               /* Asegura que la imagen ocupe todo el ancho del contenedor */
+    /* altura fija eliminada para evitar distorsiones */
+    aspect-ratio: 16 / 9;      /* Mantiene proporción consistente */
+    max-height: 500px;         /* límite máximo si necesitas controlar altura */
+    object-fit: cover;         /* Ajusta la imagen para cubrir el contenedor sin distorsión */
+    display: block;            /* Elimina espacios en línea alrededor de la imagen */
 }
 /*Botones de navegacion del carrusel de ofertas*/
 
@@ -118,39 +132,10 @@
 
 /*Carrusel Categorias*/
 
-/* asegurar un ancho de contenido compartido y centrado */
-main.contenedor {
-    max-width: 1200px;     /* ajusta este valor al mismo que usa novedadesProductos */
-    margin: 0 auto;
-    padding: 0 1.6rem;     /* gutters iguales para todas las secciones */
-    box-sizing: border-box;
-}
-
-/* que ambas secciones ocupen todo el ancho del contenedor */
-.carouselContainerCategorias,
-.novedadesProductos {
-    width: 100%;
-    box-sizing: border-box;
-    position: relative;    /* necesario para posicionar botones dentro */
-}
-
-/* el track del carrusel ocupa todo el ancho interno del contenedor */
-.carouselContainerCategorias .carouselCategorias {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-/* cada item se sigue calculando por flex-basis; si usas 3 por vista */
-.carouselItemsCategorias {
-    flex: 0 0 calc((100% / 3) - 1rem); /* conserva la lógica previa para 3 items visibles */
-}
-
 .carouselContainerCategorias {
-    position: relative;
-    max-width: 80%;
-    margin: 0 auto 4rem auto;
+    position: relative;/* contenedor relativo para posicionar botones e indicadores */
+    max-width: 90%;/* ancho del carrusel */
+    margin: 0 auto 4rem auto;/* espacio inferior de */
     overflow: hidden;
 }
 .carouselCategorias {
@@ -187,6 +172,7 @@ main.contenedor {
     font-weight: 600;
     font-size: 1.4rem;
     text-align: center;
+    background-color: #009FB7;
 }
 
 /* botones (usa ya existentes estilos de .carouselBtnOfertas) */
@@ -210,3 +196,90 @@ main.contenedor {
 @media (max-width: 520px) {
     .carouselItemsCategorias { flex: 0 0 100%; }
 }
+
+/*Carrusel Novedades*/
+
+.carouselContainerNovedades {
+    position: relative;
+    max-width: 90%;
+    margin: 0 auto 4rem auto;
+    overflow: hidden;
+}
+.carouselNovedades {
+    display: flex;
+    gap: 1rem;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+    padding: 1rem 0;
+    box-sizing: border-box;
+}
+/* cada item ocupará 1/3 del contenedor (con gap considerado) */
+.carouselItemsNovedades {
+    flex: 0 0 calc((100% / 3) - (1rem * 2 / 3));
+    box-sizing: border-box;
+}
+.carouselBtnNovedades {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 3.8rem;
+    height: 3.8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.35);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+.novedades-card {
+    display: block;
+    background: #fff;
+    border-radius: .6rem;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.novedades-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+}
+.novedades-title {
+    display: block;
+    padding: 0.8rem;
+    font-weight: 600;
+    font-size: 1.4rem;
+    text-align: center;
+    background-color: #009FB7;
+}
+
+/* botones (reutilizan estilos generales .carouselBtnOfertas) */
+#prevNovedadesBtn { left: 0.6rem; }
+#nextNovedadesBtn { right: 0.6rem; }
+
+/* indicadores específicos para novedades */
+#indicatorsNovedades {
+    position: absolute; 
+    bottom: .8rem; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    display:flex; gap:.5rem; 
+}
+
+/* responsive: 1 item en pantallas pequeñas, 2 en medias */
+@media (max-width: 900px) {
+    .carouselItemsNovedades { flex: 0 0 calc((100% / 2) - (1rem * 1 / 2)); }
+}
+@media (max-width: 520px) {
+    .carouselItemsNovedades { flex: 0 0 100%; }
+}
+
+

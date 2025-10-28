@@ -53,98 +53,150 @@ document.addEventListener('DOMContentLoaded', () => {
     goToSlide(0);
 });
 
-// --- Carrusel Categorías: mostrar 3 por vista y navegar por botones
+/* Carrusel de Novedades */
 
-document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('carouselCategorias');
-    const prev = document.getElementById('prevCategoriasBtn');
-    const next = document.getElementById('nextCategoriasBtn');
-    const indicatorsCat = document.getElementById('indicatorsCategorias');
+function initCarousel(options) {
+    const {
+        containerSel, itemSel, prevSel, nextSel, indicatorsSel,
+        perViewCalc = () => 1, wrap = false
+    } = options;
 
-    if (!container) return;
+    const container = document.querySelector(containerSel);
+    if (!container) return null;
 
-    const items = Array.from(container.querySelectorAll('.carouselItemsCategorias'));
-    const total = items.length;
-    function itemsPerView() {
-        if (window.matchMedia('(max-width:520px)').matches) return 1;
-        if (window.matchMedia('(max-width:900px)').matches) return 2;
-        return 3;
-    }
+    const items = Array.from(container.querySelectorAll(itemSel));
+    if (!items.length) return null;
 
-    let perView = itemsPerView();
-    let maxIndex = Math.max(0, total - perView);
+    const prevBtn = prevSel ? document.querySelector(prevSel) : null;
+    const nextBtn = nextSel ? document.querySelector(nextSel) : null;
+    const indicators = indicatorsSel ? document.querySelector(indicatorsSel) : null;
+
+    let perView = Math.max(1, perViewCalc());
+    let maxIndex = Math.max(0, items.length - perView);
     let index = 0;
 
-    function updateLayout() {
-        perView = itemsPerView();
-        maxIndex = Math.max(0, total - perView);
-        // asegúrate de que el índice esté dentro de rango tras el resize
-        if (index > maxIndex) index = maxIndex;
-        goTo(index);
+    function recalc() {
+        perView = Math.max(1, perViewCalc());
+        maxIndex = Math.max(0, items.length - perView);
+        if (index > maxIndex) index = wrap ? 0 : maxIndex;
         renderIndicators();
+        goTo(index);
     }
 
     function goTo(i) {
+        if (wrap) {
+            const pages = maxIndex + 1;
+            if (pages > 0) i = ((i % pages) + pages) % pages;
+            else i = 0;
+        } else {
+            if (i < 0) i = 0;
+            if (i > maxIndex) i = maxIndex;
+        }
         index = i;
-        // Clamp index por seguridad (aunque next/prev hacen wrap)
-        if (index < 0) index = 0;
-        if (index > maxIndex) index = maxIndex;
         const shiftPercent = (100 / perView) * index;
         container.style.transform = `translateX(-${shiftPercent}%)`;
-        // no deshabilitamos botones (wrap), solo actualizamos indicadores
-        updateIndicatorState();
+        updateIndicators();
     }
 
-    function nextSlide() {
-        // wrap hacia delante
-        if (maxIndex === 0) {
-            goTo(0);
-            return;
-        }
-        const nextIndex = index >= maxIndex ? 0 : index + 1;
-        goTo(nextIndex);
-    }
-
-    function prevSlide() {
-        // wrap hacia atrás
-        if (maxIndex === 0) {
-            goTo(0);
-            return;
-        }
-        const prevIndex = index <= 0 ? maxIndex : index - 1;
-        goTo(prevIndex);
-    }
+    function next() { goTo(index + 1); }
+    function prev() { goTo(index - 1); }
 
     function renderIndicators() {
-        if (!indicatorsCat) return;
-        indicatorsCat.innerHTML = '';
-        const dotsCount = maxIndex + 1;
-        for (let i = 0; i < dotsCount; i++) {
-            const b = document.createElement('button');
-            b.type = 'button';
-            b.className = 'carousel-dot';
-            b.dataset.index = i;
-            b.setAttribute('aria-label', `Página ${i + 1}`);
-            b.addEventListener('click', () => goTo(i));
-            indicatorsCat.appendChild(b);
+        if (!indicators) return;
+        indicators.innerHTML = '';
+        const pages = Math.max(1, maxIndex + 1);
+        for (let i = 0; i < pages; i++) {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'carousel-dot';
+            btn.dataset.index = i;
+            btn.setAttribute('aria-label', `Página ${i + 1}`);
+            btn.addEventListener('click', () => goTo(i));
+            indicators.appendChild(btn);
         }
-        updateIndicatorState();
+        updateIndicators();
     }
 
-    function updateIndicatorState() {
-        if (!indicatorsCat) return;
-        const dots = Array.from(indicatorsCat.children);
-        dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    function updateIndicators() {
+        if (!indicators) return;
+        Array.from(indicators.children).forEach((d, i) => d.classList.toggle('active', i === index));
     }
 
-    // eventos
-    next && next.addEventListener('click', nextSlide);
-    prev && prev.addEventListener('click', prevSlide);
-    window.addEventListener('resize', () => {
-        setTimeout(updateLayout, 80);
+    // listeners
+    if (nextBtn) nextBtn.addEventListener('click', () => { next(); });
+    if (prevBtn) prevBtn.addEventListener('click', () => { prev(); });
+    window.addEventListener('resize', () => { setTimeout(recalc, 80); });
+
+    // touch swipe (simple)
+    (function addTouch() {
+        let startX = 0, moved = false;
+        container.addEventListener('touchstart', e => {
+            startX = e.touches[0].clientX;
+            moved = false;
+        }, {passive: true});
+        container.addEventListener('touchmove', e => {
+            const dx = e.touches[0].clientX - startX;
+            if (Math.abs(dx) > 10) moved = true;
+        }, {passive: true});
+        container.addEventListener('touchend', e => {
+            if (!moved) return;
+            const dx = (e.changedTouches[0].clientX - startX);
+            if (dx < -30) next();
+            if (dx > 30) prev();
+        });
+    })();
+
+    // init styles & render
+    container.style.transition = container.style.transition || 'transform 0.5s ease';
+    // ensure container has will-change for smoother transform
+    container.style.willChange = 'transform';
+    recalc();
+
+    return { goTo, next, prev, recalc };
+}
+
+// inicializaciones específicas según tu CSS/HTML
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Ofertas: 1 por vista, wrap circular
+    initCarousel({
+        containerSel: '#carouselOfertas',
+        itemSel: '.carouselItemsOfertas',
+        prevSel: '#prevBtn',
+        nextSel: '#nextBtn',
+        indicatorsSel: '#indicators',
+        perViewCalc: () => 1,
+        wrap: true
     });
 
-    // init
-    container.style.transition = 'transform 0.5s ease';
-    updateLayout();
+    // Categorías: responsive 3/2/1, wrap circular
+    initCarousel({
+        containerSel: '#carouselCategorias',
+        itemSel: '.carouselItemsCategorias',
+        prevSel: '#prevCategoriasBtn',
+        nextSel: '#nextCategoriasBtn',
+        indicatorsSel: '#indicatorsCategorias',
+        perViewCalc: () => {
+            if (window.matchMedia('(max-width:520px)').matches) return 1;
+            if (window.matchMedia('(max-width:900px)').matches) return 2;
+            return 3;
+        },
+        wrap: true
+    });
+
+    // Novedades: usa las mismas reglas que categorías (3/2/1)
+    initCarousel({
+        containerSel: '#carouselNovedades',
+        itemSel: '.carouselItemsNovedades',
+        prevSel: '#prevNovedadesBtn',
+        nextSel: '#nextNovedadesBtn',
+        indicatorsSel: '#indicatorsNovedades',
+        perViewCalc: () => {
+            if (window.matchMedia('(max-width:520px)').matches) return 1;
+            if (window.matchMedia('(max-width:900px)').matches) return 2;
+            return 3;
+        },
+        wrap: true
+    });
 });
+
