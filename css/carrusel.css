@@ -9,6 +9,9 @@ main.contenedor {
     margin-right: auto;
     box-sizing: border-box;
 }
+img{
+    width: 100%; /* Asegura que las imagenes no excedan el contenedor*/
+}
 
 /*Carrusel Ofertas*/
 
